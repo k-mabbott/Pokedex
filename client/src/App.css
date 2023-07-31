@@ -1,0 +1,87 @@
+/* font-family: 'Love Ya Like A Sister', cursive;
+font-family: 'Nunito', sans-serif;
+font-family: 'Plus Jakarta Sans', sans-serif;
+font-family: 'Roboto', sans-serif;
+font-family: 'Slackey', cursive; */
+
+*{
+  font-family: 'Love Ya Like A Sister'
+}
+
+body {
+  background-image: url('../public/pokeeeee.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  font-size: larger;
+
+}
+
+.header-input {
+  align-self: center;
+  font-size: medium;
+  font-weight: 600;
+}
+.header-input input {
+  background-color: cornflowerblue;
+  border: 2px solid black;
+  border-radius: .5rem;
+  
+}
+
+.pokeImg {
+  padding: 0;
+  height: 8rem;
+  align-self: center;
+}
+
+.card-header p {
+  display: inline-block
+  
+}
+
+.pokelist { 
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 1rem 10%;
+  text-align: center;
+  align-items: center;
+  width: 100%;
+}
+
+.pokecard {
+  border: 2px solid black;
+  /* outline: 2px solid pink; */
+  border-radius: 1rem;
+  box-shadow: -5px 5px 5px black;
+  width:25vw;
+  opacity: 0.85;
+  justify-content: center;
+  padding: 1rem 0; 
+  transition:200ms ease-in-out;
+  transform: scale(1.0);
+  /* background-color: antiquewhite; */
+  font-family: 'Love Ya Like A Sister'
+}
+
+.pokecard, h2 {
+  margin: 0;
+  padding: 0;
+}
+.pokecard p {
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.pokecard:hover {
+  transition:200ms ease-in-out;
+  transform: scale(1.1);
+  box-shadow: 0px 15px 10px black;
+}
