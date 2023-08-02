@@ -70,8 +70,8 @@ export default () => {
             <div className='pokelist' >
                 {
                     pokeList && pokeList.sort((a, b) => a.id - b.id).map((poke, i) =>
-                        <div onClick={() => { navigate(`/poke/${poke.id}`) }} >
-                            < PokeCard className='poke-card' key={i} poke={poke} />
+                        <div key={i} onClick={() => { navigate(`/poke/${poke.id}`) }} >
+                            < PokeCard className='poke-card' poke={poke} />
                         </div>
                     )
                 }
