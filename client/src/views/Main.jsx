@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 export default () => {
 
     const [pokeList, setPokeList] = useState([]);
+    const [pokeListFiltered, setPokeListFiltered] = useState([]);
     //https://pokeapi.co/api/v2/pokemon?limit=151
     const [search, setSearch] = useState('')
     const gotPokes = useRef(false)
@@ -24,13 +25,14 @@ export default () => {
     const getAllPokes = () => {
         gotPokes.current = true
         setPokeList([])
-        // for (let i = 1; i < 152; i++) {
+        // for (let i = 1; i < 151; i++) {
         for (let i = 1; i < 650; i++) {
 
             axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`)
                 .then(res => {
                     // console.log(res.data)
                     setPokeList(currList => [...currList, res.data])
+                    setPokeListFiltered(currList => [...currList, res.data])
                 })
                 .catch(err => {
                     console.log(err)
@@ -41,23 +43,16 @@ export default () => {
     const pokeSearch = (e) => {
         setSearch(e.target.value? e.target.value : '');
         if (!e.target.value) {
-            gotPokes.current = true
-            getAllPokes()
-            return
+            setPokeListFiltered(pokeList)
+            return;
         }
-        gotPokes.current = false
         const results = pokeList.filter(pokes => {
             if (e.target.value === "") return pokeList
             return pokes.name.toLowerCase().includes(e.target.value.toLowerCase())
         })
-        setPokeList(results)
+        setPokeListFiltered(results)
     }
 
-    //
-
-    // setTimeout(console.log(pokeList), 2000)
-    //<img src={poke.sprites.front_default} alt={poke.name} />
-    //<p>{poke.name}</p>
 
     return (
         <>
@@ -77,7 +72,7 @@ export default () => {
             </header>
             <div className='pokelist' >
                 {
-                    pokeList && pokeList.sort((a, b) => a.id - b.id).map((poke, i) =>
+                    pokeList && pokeListFiltered.sort((a, b) => a.id - b.id).map((poke, i) =>
                         <div key={i} onClick={() => { navigate(`/poke/${poke.id}`) }} >
                             < PokeCard className='poke-card' poke={poke} />
                         </div>
