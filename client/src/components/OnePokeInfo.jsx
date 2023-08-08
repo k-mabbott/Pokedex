@@ -67,16 +67,16 @@ const OnePokeInfo = ({ poke, evolutions }) => {
                     <div>
                         <div><b>Evolution Chain: {evolutions.chain.evolves_to.length == 0 ? "None available" : 
                         <ul className='evolutions'>
-                            <a href={`/poke/${getPokeId(evolutions.chain.species.url)}`} >
+                            <Link to={`/poke/${getPokeId(evolutions.chain.species.url)}`} >
                             <li>{capitalize(evolutions.chain.species.name)}</li>
-                            </a>
-                            <a href={`/poke/${getPokeId(evolutions.chain.evolves_to[0].species.url)}`} >
+                            </Link>
+                            <Link to={`/poke/${getPokeId(evolutions.chain.evolves_to[0].species.url)}`} >
                             <li>{capitalize(evolutions.chain.evolves_to[0].species.name ?? "")}</li>
-                            </a>
+                            </Link>
                             {evolutions.chain.evolves_to[0].evolves_to[0]?.species.name ? 
-                            <a href={`/poke/${getPokeId(evolutions.chain.evolves_to[0].evolves_to[0].species.url)}`} >
+                            <Link to={`/poke/${getPokeId(evolutions.chain.evolves_to[0].evolves_to[0].species.url)}`} >
                             <li>{capitalize(evolutions.chain.evolves_to[0].evolves_to[0].species.name)}</li>
-                            </a>
+                            </Link>
                             : '' }
                         </ul> }
                         </b></div>
