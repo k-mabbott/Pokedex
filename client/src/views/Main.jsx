@@ -61,7 +61,14 @@ export default () => {
     return (
         <>
             <header className='header' >
-                <h1>Pokédex</h1>
+                <div className='flex'>
+                    <div className='dot blue' >
+                        <div></div>
+                    </div>
+                    <div className='dot red' style={{backgroundColor:"red"}} ></div>
+                    <div className='dot yellow' style={{backgroundColor:"yellow"}} ></div>
+                    <div className='dot green' style={{backgroundColor:"green"}} ></div>
+                </div>
                 <div className='header-input'>
                     <label htmlFor="search">Search for a Pokemon: </label>
                     <input onChange={pokeSearch} value={search} id='search' type="text" />

@@ -59,6 +59,9 @@ const PokeCard = ({poke}) => {
     const pokeGif = poke['sprites']['versions']['generation-v']['black-white']['animated']['front_default']
     const pokeGifBack = poke['sprites']['versions']['generation-v']['black-white']['animated']['back_default']
 
+    const capitalize = (str) => {
+        return str.charAt(0).toUpperCase() + str.slice(1)
+    }
 
 
     const typeList = getTypes(poke.types)
@@ -78,7 +81,7 @@ const PokeCard = ({poke}) => {
                 <p>Type(s): { typeList }</p>
             </div>
             <img className='pokeImg' src={hovering ? pokeGifBack : pokeGif} alt={poke.name} />
-            <h2>{poke.name}</h2>
+            <h2>{capitalize(poke.name)}</h2>
             <p>Base XP: {poke.base_experience}</p>
             <p>Height: {poke.height} Poke Inches</p>
             <p>Weight: {poke.weight} Poke Pounds</p>
