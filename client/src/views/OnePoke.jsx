@@ -95,7 +95,10 @@ const OnePoke = () => {
                         <summary>List of Moves</summary>
                         <ul>
                             {
-                                poke?.moves.sort((a, b) => a.move.name > b.move.name ? 1 : -1).map((abil, i) => <li key={i} >{capitalize(abil.move.name)}</li>)
+                                poke?.moves.sort((a, b) => a.move.name > b.move.name ? 1 : -1)
+                                .map((m, i) => 
+                                { const moveNum = m.move.url.split("v2")
+                                return <li key={i} ><Link to={moveNum[1]} >{capitalize(m.move.name)}</Link></li>})
                             }
                         </ul>
                     </details>

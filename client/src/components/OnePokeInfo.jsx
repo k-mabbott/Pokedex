@@ -1,11 +1,13 @@
 import React from 'react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useMatch, useNavigate } from 'react-router-dom'
 
 const OnePokeInfo = ({ poke, evolutions }) => {
 
     const [hovering, setHovering] = useState(false)
     const [shiny, setShiny] = useState(false)
+
+    const navigate = useNavigate();
 
     const getImage = () => {
         if (!pokeGif && !pokeGifBack){
@@ -21,7 +23,10 @@ const OnePokeInfo = ({ poke, evolutions }) => {
         }
     }
 
-
+    const getPokeId = (url) => {
+        const temp = url.split("/")
+        return temp[temp.length-2]
+    }
 
     const capitalize = (str) => {
         return str.charAt(0).toUpperCase() + str.slice(1)
@@ -60,11 +65,21 @@ const OnePokeInfo = ({ poke, evolutions }) => {
                         />
                     </div>
                     <div>
-                        <p>Evolution: {evolutions.chain.evolves_to.length == 0 ? "None available" : 
-                        `${capitalize(evolutions.chain.species.name)}
-                        , ${capitalize(evolutions.chain.evolves_to[0].species.name ?? "Wow")}
-                        , ${capitalize(evolutions.chain.evolves_to[0].evolves_to[0]?.species.name?? "wow")}`} 
-                        </p>
+                        <div><b>Evolution Chain: {evolutions.chain.evolves_to.length == 0 ? "None available" : 
+                        <ul className='evolutions'>
+                            <a href={`/poke/${getPokeId(evolutions.chain.species.url)}`} >
+                            <li>{capitalize(evolutions.chain.species.name)}</li>
+                            </a>
+                            <a href={`/poke/${getPokeId(evolutions.chain.evolves_to[0].species.url)}`} >
+                            <li>{capitalize(evolutions.chain.evolves_to[0].species.name ?? "")}</li>
+                            </a>
+                            {evolutions.chain.evolves_to[0].evolves_to[0]?.species.name ? 
+                            <a href={`/poke/${getPokeId(evolutions.chain.evolves_to[0].evolves_to[0].species.url)}`} >
+                            <li>{capitalize(evolutions.chain.evolves_to[0].evolves_to[0].species.name)}</li>
+                            </a>
+                            : '' }
+                        </ul> }
+                        </b></div>
                         
                     </div>
             </div>

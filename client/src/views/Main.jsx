@@ -24,7 +24,8 @@ export default () => {
     const getAllPokes = () => {
         gotPokes.current = true
         setPokeList([])
-        for (let i = 1; i < 152; i++) {
+        // for (let i = 1; i < 152; i++) {
+        for (let i = 1; i < 650; i++) {
 
             axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`)
                 .then(res => {

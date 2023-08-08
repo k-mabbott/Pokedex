@@ -3,21 +3,21 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import axios from 'axios';
 
 
-const OneAbility = () => {
+const OneMove = () => {
 
     const { id } = useParams();
     const navigate = useNavigate();
-    const [ability, setAbility] = useState();
-    const gotAbility = useRef(false);
+    const [move, setMove] = useState();
+    const gotMove = useRef(false);
 
 
     useEffect(() => {
-        if (!gotAbility.current) {
-            gotAbility.current = true;
-            axios.get(`https://pokeapi.co/api/v2/ability/${id}`)
+        if (!gotMove.current) {
+            gotMove.current = true;
+            axios.get(`https://pokeapi.co/api/v2/move/${id}`)
                 .then(res => {
                     console.log(res.data);
-                    setAbility(res.data);
+                    setMove(res.data);
                 })
                 .catch(err => {
                     console.log(err);
@@ -27,15 +27,6 @@ const OneAbility = () => {
 
     const capitalize = (str) => {
         return str.charAt(0).toUpperCase() + str.slice(1)
-    }
-
-    const getEffect = (obj) => {
-        // {ability.effect_entries[1].effect
-        if(obj[0].language.name == "en"){
-            return obj[0].effect
-        } else {
-            return obj[1].effect
-        }
     }
 
     return (
@@ -56,18 +47,18 @@ const OneAbility = () => {
                     </h3>
                 </div>
             </header>
-            {ability ?
+            {move ?
                 <div className="card">
-                    <h1>{ability ? capitalize(ability?.name) : "Loading..."}</h1>
-                    <p>Ability ID: {ability.id}</p>
-                    <p>{capitalize(ability.generation.name)}</p>
-                    <p>Effect: {ability && getEffect(ability.effect_entries)}</p>
-                    <p>Ability is available to:</p>
+                    <h1>{move ? capitalize(move?.name) : "Loading..."}</h1>
+                    <p>Move ID: {move.id}</p>
+                    <p>{capitalize(move.generation.name)}</p>
+                    <p>Effect: {move.effect_entries[0].effect}</p>
+                    <p>Move is available to:</p>
                     <ul>
-                        {ability.pokemon.sort((a, b) => a.pokemon.name > b.pokemon.name ? 1 : -1)
+                        {move.learned_by_pokemon.sort((a, b) => a.name > b.name ? 1 : -1)
                             .map((p, i) => {
-                                const pokeId = p.pokemon.url.split("/pokemon")
-                                return <li key={i}><Link to={'/poke' + pokeId[1]} >{capitalize(p.pokemon.name)}</Link></li>
+                                const pokeId = p.url.split("/pokemon")
+                                return <li key={i}><Link to={'/poke' + pokeId[1]} >{capitalize(p.name)}</Link></li>
                             })}
                     </ul>
                 </div>
@@ -76,4 +67,4 @@ const OneAbility = () => {
     )
 }
 
-export default OneAbility
+export default OneMove
