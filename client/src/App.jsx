@@ -5,13 +5,12 @@ import OnePoke from './views/OnePoke';
 import OneAbility from './views/OneAbility';
 import OneMove from './views/OneMove';
 
-
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path='/' element={<Main />} />
-        <Route path='/poke/:id' element={<OnePoke />} />
+        <Route exact path='/poke/:id' element={<OnePoke />} />
         <Route path='/ability/:id' element={<OneAbility />} />
         <Route path='/move/:id' element={<OneMove />} />
       </Routes>

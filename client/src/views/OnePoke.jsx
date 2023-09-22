@@ -12,6 +12,10 @@ const OnePoke = () => {
     const [poke, setPoke] = useState();
     const [evolutions, setEvolutions] = useState();
     const gotPoke = useRef(false);
+    
+    useEffect (() => {
+        gotPoke.current = false;
+    }, [id])
 
     useEffect(() => {
         if (!gotPoke.current) {
@@ -40,7 +44,8 @@ const OnePoke = () => {
                 })
             
         }
-    }, [])
+    }, [id])
+
 
     const capitalize = (str) => {
         return str.charAt(0).toUpperCase() + str.slice(1)

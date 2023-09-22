@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { Link, useMatch, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const OnePokeInfo = ({ poke, evolutions }) => {
 
@@ -12,7 +12,7 @@ const OnePokeInfo = ({ poke, evolutions }) => {
     const getImage = () => {
         if (!pokeGif && !pokeGifBack){
             pokeGif = poke['sprites']['front_default']
-            pokeGifBack = poke['sprites']['back_default']
+            pokeGifBack = poke['sprites']['back_default'] ? poke['sprites']['back_default'] : poke['sprites']['front_default']
             pokeGifShiny = poke['sprites']['front_shiny']
             pokeGifBackShiny = poke['sprites']['back_shiny']
         }
@@ -67,7 +67,7 @@ const OnePokeInfo = ({ poke, evolutions }) => {
                     <div>
                         <div><b>Evolution Chain: {evolutions.chain.evolves_to.length == 0 ? "None available" : 
                         <ul className='evolutions'>
-                            <Link to={`/poke/${getPokeId(evolutions.chain.species.url)}`} >
+                            <Link to={`/poke/${getPokeId(evolutions.chain.species.url)}`}  >
                             <li>{capitalize(evolutions.chain.species.name)}</li>
                             </Link>
                             <Link to={`/poke/${getPokeId(evolutions.chain.evolves_to[0].species.url)}`} >

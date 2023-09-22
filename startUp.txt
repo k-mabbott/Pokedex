@@ -10,7 +10,8 @@ Server Folder
 * change package.json to 'nodemon server.js' if using npm start *
 
 
-
+npm start 
+nodemon start
 
 <
 SERVER
