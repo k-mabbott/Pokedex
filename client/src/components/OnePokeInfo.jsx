@@ -32,6 +32,7 @@ const OnePokeInfo = ({ poke, evolutions }) => {
         return str.charAt(0).toUpperCase() + str.slice(1)
     }
 
+
     let pokeGif = poke['sprites']['versions']['generation-v']['black-white']['animated']['front_default']
     let pokeGifBack = poke['sprites']['versions']['generation-v']['black-white']['animated']['back_default']
     let pokeGifShiny = poke['sprites']['versions']['generation-v']['black-white']['animated']['front_shiny']
@@ -41,7 +42,7 @@ const OnePokeInfo = ({ poke, evolutions }) => {
         <section className='flex onePokeSection'>
             <div className='bold'>
                 <p>ID: {poke.id}</p>
-                <p>Types: {poke.types.map( t => capitalize(t.type.name)).toString()}</p>
+                <p>Type(s): {poke.types.map( t => capitalize(t.type.name)).toString()}</p>
                 <p>Base XP: {poke.base_experience}</p>
                 <p>Height: {poke.height} Poke Inches</p>
                 <p>Weight: {poke.weight} Poke Pounds</p>

@@ -44,11 +44,12 @@ const PokeCard = ({poke}) => {
                 return 'lightskyblue'
             case 'steel':
                 return '#4e5563'
-            
+            default :
+                return 'black'
         }
     }
     const bg = bgColor(poke.types[0].type.name)
-    const bg2 = poke?.types[1]? bgColor(poke?.types[1].type.name) : ''
+    const bg2 = poke.types[1] ? bgColor(poke?.types[1].type.name) : 'black'
     // console.log(poke)
 
     const getTypes = (types) => {
@@ -67,20 +68,35 @@ const PokeCard = ({poke}) => {
     const typeList = getTypes(poke.types)
 
     return (
-        <motion.div 
-        initial={{ opacity: 0, y:-100 }}
-        animate={{ opacity: 0.9, y:0 }}
-        exit={{ opacity: 0, y:-100 }}
+        // <motion.div 
+        // initial={{ opacity: 0, y:-100 }}
+        // animate={{ opacity: 0.9, y:0 }}
+        // exit={{ opacity: 0, y:-100 }}
+        // className='pokecard' 
+        // onMouseEnter={() => setHovering(true)} 
+        // onMouseLeave={() => setHovering(false)} 
+        // style={{backgroundColor: bg }} 
+        // >
+        <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        transition={{ duration: 0.2 }}
+        variants={{
+        visible: { opacity: 1, scale: 1 },
+        hidden: { opacity: 0, scale: 0 }
+        }}
         className='pokecard' 
         onMouseEnter={() => setHovering(true)} 
         onMouseLeave={() => setHovering(false)} 
-        style={{backgroundColor: bg }} 
+        style={{backgroundColor: bg}} 
         >
             <div className='card-header'>
                 <p>ID: {poke.id}</p>
                 <p>Type(s): { typeList }</p>
             </div>
-            <img className='pokeImg' src={hovering ? pokeGifBack : pokeGif} alt={poke.name} />
+            <img className='pokeImg' src={hovering ? pokeGifBack : pokeGif} alt={poke.name} 
+            />
             <h2>{capitalize(poke.name)}</h2>
             <p>Base XP: {poke.base_experience}</p>
             <p>Height: {poke.height} Poke Inches</p>
