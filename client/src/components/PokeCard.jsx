@@ -6,6 +6,7 @@ const PokeCard = ({poke}) => {
 
     const [hovering, setHovering] = useState(false)
 
+    // Get background color for cards based on Type
     const bgColor = (pokeType) => {
         switch (pokeType){
             case 'fire':
