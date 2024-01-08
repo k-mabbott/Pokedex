@@ -54,6 +54,7 @@ const PokeCard = ({poke}) => {
     // console.log(poke)
 
     const getTypes = (types) => {
+        // Returns a list of all poke Types
         const arr = types.map(type => type.type.name)
         return arr.toString()
     }
