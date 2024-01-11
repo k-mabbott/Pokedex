@@ -70,6 +70,7 @@ const PokeCard = ({poke}) => {
     const typeList = getTypes(poke.types)
 
     return (
+        // Old Code opacity and slide-in
         // <motion.div 
         // initial={{ opacity: 0, y:-100 }}
         // animate={{ opacity: 0.9, y:0 }}
@@ -79,6 +80,7 @@ const PokeCard = ({poke}) => {
         // onMouseLeave={() => setHovering(false)} 
         // style={{backgroundColor: bg }} 
         // >
+        // Opacity and scale. 
         <motion.div
         initial="hidden"
         whileInView="visible"
