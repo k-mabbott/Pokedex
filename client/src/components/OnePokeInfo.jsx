@@ -32,7 +32,7 @@ const OnePokeInfo = ({ poke, evolutions }) => {
         return str.charAt(0).toUpperCase() + str.slice(1)
     }
 
-
+    // Get images from json
     let pokeGif = poke['sprites']['versions']['generation-v']['black-white']['animated']['front_default']
     let pokeGifBack = poke['sprites']['versions']['generation-v']['black-white']['animated']['back_default']
     let pokeGifShiny = poke['sprites']['versions']['generation-v']['black-white']['animated']['front_shiny']
