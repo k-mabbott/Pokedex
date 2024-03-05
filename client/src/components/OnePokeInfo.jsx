@@ -28,6 +28,8 @@ const OnePokeInfo = ({ poke, evolutions }) => {
         return temp[temp.length-2]
     }
 
+    // Re-usable code
+
     const capitalize = (str) => {
         return str.charAt(0).toUpperCase() + str.slice(1)
     }
